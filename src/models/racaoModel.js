@@ -1,23 +1,22 @@
-const mongoose = require('../database');
+const mongoose = require('mongoose');
 
 const RacaoSchema = new mongoose.Schema({
 
     nome:{
         type: String,
-        require: true
+        required: true
     },
     quantidade:{
         type: Number,
-        require: true
+        required: true
     },
     valor:{
         type: Number,
-        require: true
+        required: true
     },
     data:{
         type: Date,
         default: Date.now,
-        require: true
     }
 })
 

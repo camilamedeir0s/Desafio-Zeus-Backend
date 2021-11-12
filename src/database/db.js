@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
+const connectDB = async () => {
+    try {
+        await mongoose.connect('mongodb://localhost/racao', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true, 
+        });
+        mongoose.Promise = global.Promise;
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 
-mongoose.connect('mongodb://localhost/racao').then(() => {
-    console.log('MongoDB conectado')
-}).catch((err) => {
-    console.log('Houve um erro ao se conectar ao mongoDB: ' +err)
-})
-
-module.exports = mongoose;
+module.exports = connectDB;

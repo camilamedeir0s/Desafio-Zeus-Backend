@@ -1,20 +1,12 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/racaoController');
 
-const Racao = require('../src/models/racaoModel');
+router.post('/create', controller.create);
+router.get('/find', controller.getMany);
+router.get('/find/:id', controller.getOne);
+router.put('/update/:id', controller.update);
+router.delete('/delete/:id', controller.delete);
 
-//rotas API (dúvida: pq usar async?)
 
-//criação de dados:
-router.post('/', async (req, res) => {
-
-    //dúvida: COMO VINCULAR A MODEL AQUI?????
-
-    try {    
-        await racao.create(racao)
-        res.json({message: 'racao inserida no sistema com sucesso'})
-    } catch (error) {
-        res.json({error: error})
-    }
-})
-
-module.exports = router
+module.exports = router;
