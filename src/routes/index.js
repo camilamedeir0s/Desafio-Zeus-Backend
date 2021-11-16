@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/racao', require('./racaoRoutes'));
+router.use('/food', require('./dogFoodRoutes'));
 
 module.exports = router;

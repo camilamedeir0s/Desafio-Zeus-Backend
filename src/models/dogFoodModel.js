@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 
-const RacaoSchema = new mongoose.Schema({
+const dogFoodSchema = new mongoose.Schema({
 
-    nome:{
+    name:{
         type: String,
         required: true
     },
-    quantidade:{
+    quantity:{
         type: Number,
         required: true
     },
-    valor:{
+    price:{
         type: Number,
         required: true
     },
-    data:{
+    date:{
         type: Date,
         default: Date.now,
     }
 })
 
-module.exports = mongoose.model('Racao', RacaoSchema);
+module.exports = mongoose.model('dogFood', dogFoodSchema);
