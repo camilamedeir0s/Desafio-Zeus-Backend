@@ -3,8 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/dogFoodController');
 
 router.post('/create', controller.create);
-router.get('/amount', controller.amount);
-router.get('/amountMonth/:month', controller.amountMonth);
+router.get('/amountMonth', controller.amountMonth);
 router.get('/find', controller.getMany);
 router.get('/find/:id', controller.getOne);
 router.put('/update/:id', controller.update);

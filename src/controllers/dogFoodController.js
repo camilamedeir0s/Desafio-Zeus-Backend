@@ -64,32 +64,24 @@ module.exports = {
         }
     },
 
-    amount: async (req, res) => {
-        try {
-            const dogFoodRead = await dogFood.find();
-            let amount = 0;
-            for(let i = dogFoodRead.length-1; i >= 0; i--){
-                amount += dogFoodRead[i].quantity*dogFoodRead[i].price;
-            }
-            return res.status(200).json(amount);
-        } catch (error) {
-            console.log(error);
-            return res.status(400).send({error: "erro ao calcular"});
-        }
-    },
-
     amountMonth: async (req, res) => {
-        const month = req.params;
+        const month = req.query.month;
+        const year = req.query.year;
+        const date = new Date()
         try {
-            const dogFoodRead = await dogFood.find();
-            let amount = 0;
-            for(let i = dogFoodRead.length-1; i >= 0; i--){
-                const date = dogFoodRead[i].date.getMonth() + 1;
-                if(date.toString() == month.month){
-                    amount += dogFoodRead[i].quantity*dogFoodRead[i].price;
+            const dogFoodRead = await dogFood.find({
+                "date": {
+                    $gte: new Date(year, month-1),
+                    $lte: new Date(year, month)
                 }
+            });
+            let amountPrice = 0;
+            let amountQuantity = 0;
+            for(let i = dogFoodRead.length-1; i >= 0; i--){
+                amountPrice += dogFoodRead[i].price;
+                amountQuantity += dogFoodRead[i].quantity;
             }
-            return res.status(200).json(amount);
+            return res.status(200).json({amountPrice, amountQuantity});
         } catch (error) {
             console.log(error);
             return res.status(400).send({error: "erro ao calcular"});
