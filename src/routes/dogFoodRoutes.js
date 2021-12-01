@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/dogFoodController');
+const authMiddleware = require('../middleware/auth');
+
+router.use(authMiddleware);
 
 router.post('/create', controller.create);
 router.get('/amountMonth', controller.amountMonth);
