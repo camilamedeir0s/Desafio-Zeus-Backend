@@ -17,7 +17,12 @@ const dogFoodSchema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now,
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required: true
     }
 })
 
-module.exports = mongoose.model('dogFood', dogFoodSchema);
+module.exports = mongoose.model('DogFood', dogFoodSchema);
