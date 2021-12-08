@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost/dogFood', {
+        await mongoose.connect('mongodb://zeus-mongo-runner/dogFood', {
             useNewUrlParser: true,
             useUnifiedTopology: true, 
         });

@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  zeus-api-runner:
+    container_name: zeus-api-runner
+    build: .
+    ports: 
+      - 8081:8081
+    depends_on:
+      - "zeus-mongo-runner"
+    
+
+  zeus-mongo-runner:
+    container_name: zeus-mongo-runner
+    image: mongo
