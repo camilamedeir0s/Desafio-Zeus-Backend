@@ -3,7 +3,7 @@ const dogFood = require('../models/dogFoodModel');
 module.exports = {
     create: async (req, res) => {
         try {
-            const dogFoodCreate = await dogFood.create(req.body);
+            const dogFoodCreate = await dogFood.create( { ...req.body, user: req.userId });
             return res.status(201).send(dogFoodCreate);
         } catch (error) {
             console.log(error);
@@ -13,7 +13,7 @@ module.exports = {
 
     getMany: async (req, res) => {
         try {
-            const dogFoodRead = await dogFood.find();
+            const dogFoodRead = await dogFood.find().populate('user');
             return res.status(200).send(dogFoodRead);
         } catch (error) {
             console.log(error);
@@ -27,7 +27,7 @@ module.exports = {
             if(!await dogFood.findById(_id)){
                 return res.status(400).send({error: "id não encontrado"});
             }
-            const dogFoodReadOne = await dogFood.findById(_id);
+            const dogFoodReadOne = await dogFood.findById(_id).populate('user');
             return res.status(200).send(dogFoodReadOne);
         } catch (error) {
             console.log(error);

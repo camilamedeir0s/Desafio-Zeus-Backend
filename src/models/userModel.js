@@ -21,8 +21,7 @@ const UserSchema = new mongoose.Schema({
     dogFood:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'DogFood',
-        required: false
-    }]
+    }],
 }, {timestamps: true});
 
 UserSchema.pre('save', async function (next){
